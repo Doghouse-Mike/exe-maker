@@ -1,4 +1,4 @@
-name: Build EXE
+name: Build Tracker EXE
 
 on:
   workflow_dispatch:
@@ -15,13 +15,16 @@ jobs:
       with:
         python-version: '3.12'
 
-    - name: Install PyInstaller
-      run: pip install pyinstaller
+    - name: Install dependencies
+      run: |
+        pip install pandas selenium undetected-chromedriver pyinstaller
 
     - name: Build
-      run: pyinstaller --onefile tracker.py
+      run: |
+        pyinstaller --onefile --collect-all undetected_chromedriver tracker.py
 
-    - uses: actions/upload-artifact@v4
+    - name: Upload EXE
+      uses: actions/upload-artifact@v4
       with:
-        name: mikestrackerrobot
-        path: dist/*.exe
+        name: DPD Tracker
+        path: dist/tracker.exe
