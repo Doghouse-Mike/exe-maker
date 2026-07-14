@@ -19,7 +19,7 @@ jobs:
       run: pip install pyinstaller
 
     - name: Build
-      run: pyinstaller --onefile yourscript.py
+      run: pyinstaller --onefile tracker.py
 
     - uses: actions/upload-artifact@v4
       with:
